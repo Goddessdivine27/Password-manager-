@@ -1,4 +1,4 @@
-# Password-manager-
+ # Password-manager-
 # Vault
 
 A robust, lightweight, self-hosted password manager web application engineered with Python, Flask, Argon2id, and authenticated AES-256-GCM encryption.
