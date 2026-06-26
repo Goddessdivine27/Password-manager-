@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Create account{% endblock %}
+{% block content %}
+<div class="card auth-card">
+  <div class="auth-head">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="11" width="16" height="9" rx="2"></rect>
+      <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+    </svg>
+    <h1>Create your vault</h1>
+    <p>Choose a strong master password. There is no recovery if you lose it.</p>
+  </div>
+  <form method="post">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" autocomplete="username" required autofocus>
+
+    <label for="password">Master password</label>
+    <input type="password" id="password" name="password" autocomplete="new-password" minlength="8" required>
+
+    <label for="confirm">Confirm master password</label>
+    <input type="password" id="confirm" name="confirm" autocomplete="new-password" minlength="8" required>
+
+    <button class="btn btn-primary" type="submit">Create account</button>
+  </form>
+  <div class="auth-foot">Already have an account? <a href="{{ url_for('login') }}">Log in</a></div>
+</div>
+{% endblock %}

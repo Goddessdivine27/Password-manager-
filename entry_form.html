@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ "Add entry" if mode == "add" else "Edit entry" }}{% endblock %}
+{% block content %}
+<div class="card form-card">
+  <h1 style="margin-top:0;font-size:18px;">{{ "Add entry" if mode == "add" else "Edit entry" }}</h1>
+  <form method="post">
+    <label for="site">Site / service</label>
+    <input type="text" id="site" name="site" value="{{ entry.site if entry else '' }}" required autofocus>
+
+    <label for="entry_username">Username or email</label>
+    <input type="text" id="entry_username" name="entry_username" value="{{ entry.username if entry else '' }}">
+
+    <label for="entry_password">Password</label>
+    <input type="text" id="entry_password" name="entry_password" value="{{ entry.password if entry else '' }}" required style="font-family: var(--font-mono);">
+
+    <label for="notes">Notes</label>
+    <textarea id="notes" name="notes">{{ entry.notes if entry else '' }}</textarea>
+
+    <div class="form-actions">
+      <a class="btn" href="{{ url_for('vault') }}">Cancel</a>
+      <button class="btn btn-primary" type="submit">{{ "Save entry" if mode == "add" else "Save changes" }}</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

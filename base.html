@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Vault{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  {% if session.get('token') %}
+  <div class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="11" width="16" height="9" rx="2"></rect>
+        <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+      </svg>
+      Vault
+    </div>
+    <div class="topbar-right">
+      <span>{{ username }}</span>
+      <form method="post" action="{{ url_for('logout') }}">
+        <button class="btn btn-ghost" type="submit">Log out</button>
+      </form>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="page{% if not session.get('token') %} center-page{% endif %}">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
